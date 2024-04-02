@@ -9,6 +9,7 @@ import Home
 import Email_Summarizer
 import Meeting
 import wa
+import ChatwithDocuments
 
 # Define a function to import and run a page script dynamically
 def run_page(page_name):
@@ -28,8 +29,8 @@ def run():
     with st.sidebar:
         app = option_menu(
             menu_title='People Success AI Bot',
-            options=['Home','Chatbot','Meeting Analyser','Work Anniversary','Email Summarizer', 'Picture GPT', 'PDF GPT'],
-            icons=['house-fill','wechat','journal-check','envelope-at','envelope-at', 'images', 'filetype-pdf'],
+            options=['Home','Chatbot','Meeting Analyser','Work Anniversary','Email Summarizer', 'Picture GPT','Txt/Doc GPT', 'PDF GPT'],
+            icons=['house-fill','wechat','journal-check','envelope-at','envelope-at', 'images','filetype-txt','filetype-pdf'],
             menu_icon='chat-text-fill',
             default_index=0,  # Set default index to 0 (Chatbot)
             styles={
@@ -53,6 +54,8 @@ def run():
         wa.app()
     if app == 'Picture GPT':
         TA_Picture_GPT.app()
+    if app == ''Txt/Doc GPT':
+        ChatwithDocuments.app()
     elif app == 'PDF GPT':
         PDF_GPT.app()
 
