@@ -54,7 +54,7 @@ def run():
         wa.app()
     if app == 'Picture GPT':
         TA_Picture_GPT.app()
-    if app == ''Txt/Doc GPT':
+    if app == 'Txt/Doc GPT':
         ChatwithDocuments.app()
     elif app == 'PDF GPT':
         PDF_GPT.app()
