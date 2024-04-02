@@ -26,25 +26,25 @@ def app():
     # System message
     st.write("Please upload a .txt or .docx file to chat with the document.")
 
-    uploaded_file = st.file_uploader("Choose a file", type=["txt", "docx"])
+    upload_file = st.file_uploader("Choose a file", type=["txt", "docx"])
 
     #with st.sidebar:
     # Chat option
     user_question = st.text_input("Ask a question about the document:")
 
     # Enable button only if file is uploaded
-    if uploaded_file is not None:
+    if upload_file is not None:
         submit_button = st.button('Submit')
     else:
         submit_button = None
 
     if submit_button:
         # Read the uploaded file
-        file_content = uploaded_file.read()
+        file_content = upload_file.read()
         
-        if uploaded_file.type == "text/plain":  # If file is .txt
+        if upload_file.type == "text/plain":  # If file is .txt
             text_data = file_content.decode("utf-8")
-        elif uploaded_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":  # If file is .docx
+        elif upload_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":  # If file is .docx
             docx_data = BytesIO(file_content)
             text_data = docx2txt.process(docx_data)
         else:
@@ -66,7 +66,7 @@ def app():
         # Access system message content
         system_message_content = "You are an AI assistant tasked with providing response from the provided text,  Please avoid unnecessary details or tangential points." 
 
-        result = generate_minutes(text_data, user_question, system_message_content, vector_store)
+        result = generate_response(text_data, user_question, system_message_content, vector_store)
         st.write("**Output:**")
         st.write(result["result"])
     # else:
