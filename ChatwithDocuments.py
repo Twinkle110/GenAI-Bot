@@ -26,25 +26,25 @@ def app():
     # System message
     st.write("Please upload a .txt or .docx file to chat with the document.")
 
-    upload_file = st.file_uploader("Choose a file", type=["txt", "docx"])
+    uploaded_file = st.file_uploader("Choose a file", type=["txt", "docx"])
 
     #with st.sidebar:
     # Chat option
     user_question = st.text_input("Ask a question about the document:")
 
     # Enable button only if file is uploaded
-    if upload_file is not None:
+    if uploaded_file is not None:
         submit_button = st.button('Submit')
     else:
         submit_button = None
 
     if submit_button:
         # Read the uploaded file
-        file_content = upload_file.read()
+        file_content = uploaded_file.read()
         
         if upload_file.type == "text/plain":  # If file is .txt
             text_data = file_content.decode("utf-8")
-        elif upload_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":  # If file is .docx
+        elif uploaded_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":  # If file is .docx
             docx_data = BytesIO(file_content)
             text_data = docx2txt.process(docx_data)
         else:
